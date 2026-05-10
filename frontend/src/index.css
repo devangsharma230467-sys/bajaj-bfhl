@@ -1,0 +1,479 @@
+/* ===========================
+   BFHL Frontend - Global Styles
+   Candidate: Devang Sharma
+   Roll: DEVANG230467
+   =========================== */
+
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #111128;
+  --bg-card: #181838;
+  --bg-input: #1e1e3f;
+  --accent: #6c63ff;
+  --accent-hover: #7b73ff;
+  --accent-glow: rgba(108, 99, 255, 0.35);
+  --text-primary: #e8e8f0;
+  --text-secondary: #9d9dba;
+  --text-muted: #6b6b8a;
+  --border: #2a2a4a;
+  --success: #4ade80;
+  --error: #f87171;
+  --warning: #fbbf24;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+      ellipse at 20% 50%,
+      rgba(108, 99, 255, 0.06) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 20%,
+      rgba(99, 179, 255, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 80%,
+      rgba(168, 99, 255, 0.04) 0%,
+      transparent 50%
+    );
+  z-index: -1;
+  animation: bgFloat 20s ease-in-out infinite;
+}
+
+@keyframes bgFloat {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(-2%, 1%);
+  }
+  66% {
+    transform: translate(1%, -1%);
+  }
+}
+
+/* ---- App Container ---- */
+.app-container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  position: relative;
+}
+
+/* ---- Header ---- */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header__badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), #a78bfa);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 18px;
+}
+
+.header__title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #e8e8f0, #6c63ff, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.header__subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.header__info {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.header__chip {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 4px 14px;
+  border-radius: 50px;
+}
+
+/* ---- Card ---- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: rgba(108, 99, 255, 0.3);
+}
+
+.card__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card__label::before {
+  content: "";
+  width: 4px;
+  height: 16px;
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+/* ---- Textarea ---- */
+.json-textarea {
+  width: 100%;
+  min-height: 160px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.88rem;
+  padding: 16px;
+  resize: vertical;
+  outline: none;
+  transition: var(--transition);
+  line-height: 1.6;
+}
+
+.json-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.json-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* ---- Error Message ---- */
+.error-msg {
+  color: var(--error);
+  font-size: 0.82rem;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: var(--radius-sm);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Submit Button ---- */
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit-btn--loading {
+  pointer-events: none;
+}
+
+/* ---- Spinner ---- */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Filter Section ---- */
+.filter-section {
+  margin-top: 8px;
+}
+
+/* ---- React Select Overrides ---- */
+.react-select__control {
+  background: var(--bg-input) !important;
+  border-color: var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  min-height: 46px !important;
+  box-shadow: none !important;
+}
+
+.react-select__control:hover {
+  border-color: var(--accent) !important;
+}
+
+.react-select__control--is-focused {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-glow) !important;
+}
+
+.react-select__menu {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow) !important;
+  z-index: 20 !important;
+}
+
+.react-select__option {
+  color: var(--text-primary) !important;
+  background: transparent !important;
+  padding: 10px 16px !important;
+}
+
+.react-select__option:hover,
+.react-select__option--is-focused {
+  background: rgba(108, 99, 255, 0.15) !important;
+}
+
+.react-select__option--is-selected {
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+
+.react-select__multi-value {
+  background: rgba(108, 99, 255, 0.2) !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(108, 99, 255, 0.3) !important;
+}
+
+.react-select__multi-value__label {
+  color: var(--text-primary) !important;
+  font-size: 0.82rem !important;
+  padding: 3px 8px !important;
+}
+
+.react-select__multi-value__remove:hover {
+  background: rgba(248, 113, 113, 0.2) !important;
+  color: var(--error) !important;
+}
+
+.react-select__placeholder {
+  color: var(--text-muted) !important;
+}
+
+.react-select__input-container {
+  color: var(--text-primary) !important;
+}
+
+.react-select__indicator-separator {
+  background-color: var(--border) !important;
+}
+
+.react-select__dropdown-indicator {
+  color: var(--text-muted) !important;
+}
+
+.react-select__clear-indicator {
+  color: var(--text-muted) !important;
+}
+
+/* ---- Results Section ---- */
+.results {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-group {
+  margin-bottom: 20px;
+}
+
+.result-group__title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.result-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.result-tag {
+  background: rgba(108, 99, 255, 0.12);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  color: var(--accent-hover);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.result-tag:hover {
+  background: rgba(108, 99, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.result-tag--number {
+  background: rgba(74, 222, 128, 0.1);
+  border-color: rgba(74, 222, 128, 0.25);
+  color: var(--success);
+}
+
+.result-tag--number:hover {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.result-tag--highlight {
+  background: rgba(251, 191, 36, 0.12);
+  border-color: rgba(251, 191, 36, 0.3);
+  color: var(--warning);
+}
+
+.result-tag--highlight:hover {
+  background: rgba(251, 191, 36, 0.2);
+}
+
+.empty-result {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* ---- Footer ---- */
+.footer {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .app-container {
+    padding: 24px 14px 40px;
+  }
+
+  .header__title {
+    font-size: 1.7rem;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .json-textarea {
+    min-height: 120px;
+    font-size: 0.82rem;
+  }
+}
