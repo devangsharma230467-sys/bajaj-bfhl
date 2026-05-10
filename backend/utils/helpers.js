@@ -35,21 +35,26 @@ function isPrime(num) {
  * Extract numbers from data array
  */
 function extractNumbers(data) {
-  return data.filter((item) => !isNaN(item) && item.trim() !== "");
+  return data.filter((item) => {
+    if (item === null || item === undefined) return false;
+    const str = String(item).trim();
+    return str !== "" && !isNaN(str);
+  });
 }
 
-/**
- * Extract alphabets from data array
- */
 function extractAlphabets(data) {
-  return data.filter((item) => /^[a-zA-Z]$/.test(item));
+  return data.filter((item) => {
+    if (item === null || item === undefined) return false;
+    return /^[a-zA-Z]$/.test(String(item));
+  });
 }
 
-/**
- * Find the highest lowercase alphabet
- */
 function getHighestLowercaseAlphabet(data) {
-  const lowercaseLetters = data.filter((item) => /^[a-z]$/.test(item));
+  const lowercaseLetters = data.filter((item) => {
+    if (item === null || item === undefined) return false;
+    const s = String(item);
+    return /^[a-z]$/.test(s);
+  });
   if (lowercaseLetters.length === 0) return [];
   lowercaseLetters.sort((a, b) => b.charCodeAt(0) - a.charCodeAt(0));
   return [lowercaseLetters[0]];
