@@ -41,6 +41,7 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ is_success: false, message: "Internal server error" });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`✅ BFHL Server running on port ${PORT}`);
+  console.log(`🔗 Health check available at: http://0.0.0.0:${PORT}/`);
 });

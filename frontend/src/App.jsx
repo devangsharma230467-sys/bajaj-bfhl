@@ -66,16 +66,16 @@ function App() {
         timeout: 15000,
       });
       setResponse(res.data);
-      // Auto-select all filters on first response
       if (selectedFilters.length === 0) {
         setSelectedFilters(FILTER_OPTIONS);
       }
     } catch (err) {
-      const msg =
-        err.response?.data?.message ||
-        err.message ||
-        "Failed to reach the server. Please try again.";
-      setError(msg);
+      console.error("API Error:", err);
+      if (err.message === "Network Error") {
+        setError("Network Error: The frontend (HTTPS) cannot reach your backend. If testing locally, ensure the backend is running. If live, set the VITE_API_URL in Netlify settings.");
+      } else {
+        setError(err.response?.data?.message || err.message || "Failed to reach server.");
+      }
     } finally {
       setLoading(false);
     }
